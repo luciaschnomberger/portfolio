@@ -500,8 +500,8 @@ falas.forEach(function(_, n){
   b.type = 'button';
   b.setAttribute('aria-label', 'Mostrar frase ' + (n + 1) + ' de ' + falas.length);
   b.addEventListener('click', function(){
-    if (timer) { clearInterval(timer); timer = null; }
     mostrar(n);
+    rodar();
   });
   elDots.appendChild(b);
 });
@@ -522,14 +522,17 @@ function mostrar(n){
   }, calmo ? 0 : 450);
 }
 
-marcar(0);
-
-if (!calmo) {
+function rodar(){
+  if (timer) { clearInterval(timer); timer = null; }
+  if (calmo) { return; }
   timer = setInterval(function(){
     if (atual >= falas.length - 1) { clearInterval(timer); timer = null; return; }
     mostrar(atual + 1);
-  }, 3600);
+  }, 5500);
 }
+
+marcar(0);
+rodar();
 
 var alvos = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && !calmo) {
