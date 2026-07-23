@@ -146,6 +146,8 @@ h1{
   padding:38px 40px;margin-bottom:22px;
 }
 .feature-grid{display:grid;grid-template-columns:212px 1fr;gap:40px;align-items:start}
+.feature-grid.sem-imagem{grid-template-columns:1fr}
+.feature-grid.sem-imagem .shot{display:none}
 .shot{
   border:1px solid var(--line);border-radius:16px;overflow:hidden;
   background:var(--night);line-height:0;
@@ -185,19 +187,19 @@ h1{
 .svc span{font-size:16px;color:var(--muted-dark)}
 
 /* ---------- créditos ---------- */
-.credits{margin-top:60px;border-top:1px solid var(--line-night);padding-top:38px}
-.credits-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:26px}
+.lede-cred{margin-bottom:34px;max-width:34ch}
+.credits-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
 .cred-label{
   font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--caption);margin-bottom:14px;
+  color:var(--violet);margin-bottom:14px;
 }
 .cred-list{list-style:none}
 .cred-list li{
-  font-family:var(--display);font-weight:500;font-size:1.02rem;color:#fff;
-  padding:9px 0;border-bottom:1px solid var(--line-night);
+  font-family:var(--display);font-weight:500;font-size:1.02rem;color:var(--ink);
+  padding:10px 0;border-bottom:1px solid var(--line);
 }
-.cred-list li i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--muted-dark);margin-left:8px}
-.cred-more{font-size:15.5px;color:var(--muted-dark);margin-top:30px;font-style:italic;max-width:62ch}
+.cred-list li i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px}
+.cred-more{font-size:15.5px;color:var(--muted);margin-top:30px;font-style:italic;max-width:62ch}
 
 /* ---------- formação ---------- */
 .tl{list-style:none;border-left:1px solid var(--line);margin-left:6px}
@@ -242,8 +244,16 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
   .hero-top{gap:18px}
   .portrait{width:78px;height:78px}
 }
-@media (max-width:520px){
-  .nav-links{display:none}
+@media (max-width:560px){
+  .mark{display:none}
+  .nav-in{justify-content:center}
+  .nav-links{
+    width:100%;justify-content:space-between;gap:10px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+  }
+  .nav-links a{font-size:10px;letter-spacing:.03em;white-space:nowrap}
+  .hero-top{flex-direction:column;align-items:flex-start;gap:20px}
+  h1{font-size:7.6vw;line-height:1.05}
   .btn{padding:13px 18px;font-size:11.5px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -260,8 +270,9 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
     <a class="mark" href="#topo">LÚCIA SCHNOMBERGER<span>▌</span></a>
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#projetos">Tecnologia</a></li>
       <li><a href="#traducao">Tradução</a></li>
+      <li><a href="#trabalhos">Trabalhos</a></li>
       <li><a href="#formacao">Formação</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
@@ -318,12 +329,12 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
 
 <section class="band projects" id="projetos">
   <div class="wrap reveal">
-    <p class="eyebrow">Projetos</p>
+    <p class="eyebrow">Projetos de tecnologia</p>
 
     <article class="feature">
       <div class="feature-grid">
         <div class="shot">
-          <img src="app.png" alt="Tela inicial do aplicativo Orgulho de Ser" class="opcional">
+          <img src="app.png" data-alternativas="App_Orgulho_de_ser.png|app.PNG|App_Orgulho_de_ser.PNG" alt="Tela inicial do aplicativo Orgulho de Ser" class="opcional">
         </div>
         <div>
           <div class="feature-head">
@@ -364,7 +375,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
       <div>
         <p class="lede">Legendar é encaixar sentido dentro de um limite. Programar também.</p>
         <p>Trabalho com tradução e versão entre o português e o inglês, legendagem para plataformas de streaming e revisão de qualidade de legendagem e dublagem. É um ofício de precisão: o tempo de leitura, o número de caracteres e o tom de quem fala precisam caber todos na mesma linha.</p>
-        <p>Com a parte técnica que aprendi depois, também atendo um pedido que quase ninguém cobre bem: adaptar um aplicativo ou site inteiro para outro idioma, cuidando do texto e do código ao mesmo tempo.</p>
+        <p>Com a parte técnica que aprendi depois, faço também um trabalho que junta as duas áreas: adaptar um aplicativo ou site inteiro para outro idioma, cuidando do texto e do código ao mesmo tempo.</p>
       </div>
 
       <ul class="svc">
@@ -374,35 +385,38 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
         <li><b>Localização de software</b><span>Adaptação de aplicativos e sites para outro idioma</span></li>
       </ul>
     </div>
+  </div>
+</section>
 
-    <div class="credits">
-      <p class="eyebrow">Alguns trabalhos</p>
-      <div class="credits-cols">
-        <div>
-          <p class="cred-label">Tradução com crédito em tela</p>
-          <ul class="cred-list">
-            <li>Psych <i>T1, ep. 3</i></li>
-            <li>Em Busca do Amor</li>
-            <li>AARO: All-domain Anomaly Resolution Office</li>
-          </ul>
-        </div>
-        <div>
-          <!-- Se a agência pedir, apague este bloco inteiro (do <div> até o </div>) -->
-          <p class="cred-label">Revisão e controle de qualidade</p>
-          <ul class="cred-list">
-            <li>Apaixonada pelo Meu Diabo da Máfia</li>
-            <li>Amor às Escondidas</li>
-            <li>Contra o Príncipe Sombrio</li>
-            <li>Destinos Trocados</li>
-            <li>O Amor Chega sem Avisar</li>
-            <li>Sou Filha do General</li>
-            <li>Trava do Tempo</li>
-            <li>Entre Tânia e Amor</li>
-          </ul>
-        </div>
+<section class="band projects" id="trabalhos">
+  <div class="wrap reveal">
+    <p class="eyebrow">Trabalhos</p>
+    <p class="lede lede-cred">Alguns dos títulos em que trabalhei.</p>
+    <div class="credits-cols">
+      <div>
+        <p class="cred-label">Tradução com crédito em tela</p>
+        <ul class="cred-list">
+          <li>Psych <i>T1, ep. 3</i></li>
+          <li>Em Busca do Amor</li>
+          <li>AARO: All-domain Anomaly Resolution Office</li>
+        </ul>
       </div>
-      <p class="cred-more">Estes são apenas alguns exemplos, entre séries, filmes e conteúdo institucional.</p>
+      <div>
+        <!-- Se a agência pedir, apague este bloco inteiro (do <div> até o </div>) -->
+        <p class="cred-label">Revisão e controle de qualidade</p>
+        <ul class="cred-list">
+          <li>Apaixonada pelo Meu Diabo da Máfia</li>
+          <li>Amor às Escondidas</li>
+          <li>Contra o Príncipe Sombrio</li>
+          <li>Destinos Trocados</li>
+          <li>O Amor Chega sem Avisar</li>
+          <li>Sou Filha do General</li>
+          <li>Trava do Tempo</li>
+          <li>Entre Tânia e Amor</li>
+        </ul>
+      </div>
     </div>
+    <p class="cred-more">Estes são apenas alguns exemplos, entre séries, filmes e conteúdo institucional.</p>
   </div>
 </section>
 
@@ -451,7 +465,12 @@ var f = document.getElementById('foto');
 f.addEventListener('error', function(){ f.style.display = 'none'; });
 
 document.querySelectorAll('.opcional').forEach(function(img){
-  img.addEventListener('error', function(){ img.parentElement.style.display = 'none'; });
+  var alternativas = (img.getAttribute('data-alternativas') || '').split('|').filter(Boolean);
+  img.addEventListener('error', function(){
+    if (alternativas.length) { img.src = alternativas.shift(); return; }
+    var grid = img.closest('.feature-grid');
+    if (grid) { grid.classList.add('sem-imagem'); }
+  });
 });
 
 document.getElementById('ano').textContent = new Date().getFullYear();
