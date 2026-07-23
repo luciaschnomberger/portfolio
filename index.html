@@ -102,15 +102,21 @@ h1{
 
 .cue{
   max-width:660px;border:1px solid var(--line-night);border-left:4px solid var(--caption);
-  background:rgba(255,255,255,.035);padding:20px 24px 24px;
+  background:rgba(255,255,255,.035);padding:24px 26px;
 }
-.cue-tc{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted-dark);margin-bottom:12px}
 .cue-text{
   font-family:var(--display);font-weight:500;
   font-size:clamp(1.15rem,2.7vw,1.6rem);line-height:1.34;color:#fff;
   min-height:2.7em;transition:opacity .45s ease;
 }
 .cue-text.out{opacity:0}
+.cue-dots{display:flex;gap:8px;margin-top:22px}
+.cue-dot{
+  width:30px;height:3px;background:rgba(255,255,255,.22);
+  border:none;padding:0;cursor:pointer;transition:background .35s ease;
+}
+.cue-dot:hover{background:var(--muted-dark)}
+.cue-dot.ativo{background:var(--caption)}
 
 .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .btn{
@@ -294,8 +300,8 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
     </div>
 
     <div class="cue">
-      <p class="cue-tc" id="tc">00:00:02,140 → 00:00:06,900</p>
       <p class="cue-text" id="cue">Sou bióloga de formação, tradutora e legendadora de profissão.</p>
+      <div class="cue-dots" id="dots"></div>
     </div>
 
     <div class="cta-row">
@@ -313,7 +319,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
       <div>
         <p class="lede">Passei anos traduzindo e legendando o que outras pessoas criaram. Em algum momento, resolvi aprender a criar também.</p>
         <p>Minha formação começou na biologia, seguiu para a tradução e hoje está na tecnologia. Parece uma linha torta, mas é sempre o mesmo trabalho: entender um sistema complexo e traduzi-lo para quem precisa usar.</p>
-        <p>Foi dessa virada que nasceu o Orgulho de Ser, um aplicativo de relacionamento e comunidade para pessoas LGBTQIA+ que eu desenvolvi sozinha, do banco de dados até o sistema de pagamento. Ele está no ar, com pessoas reais usando e assinando. Não é projeto de curso, é produto.</p>
+        <p>Foi dessa virada que nasceu o Orgulho de Ser, um aplicativo de relacionamento e comunidade para pessoas LGBTQIA+ que eu desenvolvi do banco de dados até o sistema de pagamento. Ele está no ar, com pessoas reais usando e assinando. Não é projeto de curso, é produto.</p>
         <p>Hoje eu faço as duas coisas: desenvolvo aplicativos e sites, e sigo trabalhando com tradução, versão, legendagem e revisão de qualidade para streaming. As duas áreas se alimentam muito mais do que eu imaginava.</p>
       </div>
 
@@ -342,7 +348,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
             <span class="live">No ar</span>
           </div>
           <p class="kicker">Aplicativo · Criado e mantido por mim</p>
-          <p>Aplicativo de relacionamento e comunidade para pessoas LGBTQIA+. Tem perfis individuais e de casal, sistema de curtidas e matches, conversa em tempo real, agenda de eventos da comunidade, filtros de descoberta, moderação de conteúdo e assinatura paga integrada. Desenvolvi tudo sozinha, do banco de dados à publicação.</p>
+          <p>Aplicativo de relacionamento e comunidade para pessoas LGBTQIA+. Tem perfis individuais e de casal, sistema de curtidas e matches, conversa em tempo real, agenda de eventos da comunidade, filtros de descoberta, moderação de conteúdo e assinatura paga integrada. Desenvolvi tudo, do banco de dados à publicação.</p>
           <div class="tags">
             <span class="tag">HTML · CSS · JavaScript</span>
             <span class="tag">Supabase</span>
@@ -476,29 +482,52 @@ document.querySelectorAll('.opcional').forEach(function(img){
 document.getElementById('ano').textContent = new Date().getFullYear();
 
 var falas = [
-  ["00:00:02,140 → 00:00:06,900", "Sou bióloga de formação, tradutora e legendadora de profissão."],
-  ["00:00:07,020 → 00:00:12,480", "Há um tempo, decidi aprender a construir as coisas, não só traduzi-las."],
-  ["00:00:12,600 → 00:00:18,350", "Hoje eu desenvolvo aplicativos e sites, e sigo legendando para streaming."],
-  ["00:00:18,470 → 00:00:23,000", "Se você tem um projeto em mente, vamos conversar."]
+  "Sou bióloga de formação, tradutora e legendadora de profissão.",
+  "Há um tempo, decidi aprender a construir as coisas, não só traduzi-las.",
+  "Hoje eu desenvolvo aplicativos e sites, e sigo legendando para streaming.",
+  "Se você tem um projeto em mente, vamos conversar."
 ];
-var i = 0,
-    elTc = document.getElementById('tc'),
-    elCue = document.getElementById('cue'),
-    calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (calmo) {
-  elTc.textContent = falas[falas.length - 1][0];
-  elCue.textContent = falas[falas.length - 1][1];
-} else {
-  var timer = setInterval(function(){
-    i++;
-    if (i >= falas.length) { clearInterval(timer); }
-    elCue.classList.add('out');
-    setTimeout(function(){
-      elTc.textContent = falas[Math.min(i, falas.length - 1)][0];
-      elCue.textContent = falas[Math.min(i, falas.length - 1)][1];
-      elCue.classList.remove('out');
-    }, 450);
+var elCue = document.getElementById('cue'),
+    elDots = document.getElementById('dots'),
+    calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    atual = 0,
+    timer = null;
+
+falas.forEach(function(_, n){
+  var b = document.createElement('button');
+  b.className = 'cue-dot';
+  b.type = 'button';
+  b.setAttribute('aria-label', 'Mostrar frase ' + (n + 1) + ' de ' + falas.length);
+  b.addEventListener('click', function(){
+    if (timer) { clearInterval(timer); timer = null; }
+    mostrar(n);
+  });
+  elDots.appendChild(b);
+});
+
+var botoes = elDots.querySelectorAll('.cue-dot');
+
+function marcar(n){
+  botoes.forEach(function(b, j){ b.classList.toggle('ativo', j === n); });
+}
+
+function mostrar(n){
+  atual = n;
+  elCue.classList.add('out');
+  setTimeout(function(){
+    elCue.textContent = falas[n];
+    elCue.classList.remove('out');
+    marcar(n);
+  }, calmo ? 0 : 450);
+}
+
+marcar(0);
+
+if (!calmo) {
+  timer = setInterval(function(){
+    if (atual >= falas.length - 1) { clearInterval(timer); timer = null; return; }
+    mostrar(atual + 1);
   }, 3600);
 }
 
