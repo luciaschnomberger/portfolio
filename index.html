@@ -234,6 +234,19 @@ h1{
 }
 
 a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offset:3px}
+
+.ao-topo{
+  position:fixed;right:22px;bottom:22px;z-index:60;
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--caption);color:var(--night);text-decoration:none;
+  font-size:22px;line-height:1;font-family:var(--display);font-weight:600;
+  box-shadow:0 6px 20px rgba(0,0,0,.28);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .3s ease,transform .3s ease,visibility .3s;
+}
+.ao-topo.ver{opacity:1;visibility:visible;transform:none}
+.ao-topo:hover{background:#fff}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 
@@ -466,6 +479,8 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
   </div>
 </footer>
 
+<a href="#topo" class="ao-topo" id="aoTopo" aria-label="Voltar ao topo">↑</a>
+
 <script>
 var f = document.getElementById('foto');
 f.addEventListener('error', function(){ f.style.display = 'none'; });
@@ -480,6 +495,12 @@ document.querySelectorAll('.opcional').forEach(function(img){
 });
 
 document.getElementById('ano').textContent = new Date().getFullYear();
+
+var btnTopo = document.getElementById('aoTopo');
+window.addEventListener('scroll', function(){
+  if (window.scrollY > 600) { btnTopo.classList.add('ver'); }
+  else { btnTopo.classList.remove('ver'); }
+}, { passive: true });
 
 var falas = [
   "Sou bióloga de formação, tradutora e legendadora de profissão.",
