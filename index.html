@@ -66,6 +66,7 @@ a{color:inherit}
   color:var(--muted-dark);text-decoration:none;transition:color .2s;
 }
 .nav-links a:hover{color:var(--caption)}
+.lbl-curta{display:none}
 
 .night{background:var(--night);color:#fff}
 .band{padding:96px 0}
@@ -180,6 +181,7 @@ h1{
 
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .card{background:#fff;border:1px solid var(--line);padding:28px 30px}
+.card-construcao{margin-top:22px;text-align:center}
 .card .feature-head{margin-bottom:10px}
 .shot-wide{border-radius:10px;margin-bottom:20px;aspect-ratio:16/9;background:var(--night)}
 .shot-wide img{width:100%;height:100%;object-fit:cover;object-position:top left}
@@ -217,8 +219,9 @@ h1{
   font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;line-height:1;
 }
 .game-cover-sub{
-  font-family:var(--body);font-style:italic;color:rgba(255,255,255,.75);
-  margin-top:10px;font-size:15.5px;max-width:34ch;
+  font-family:var(--body);color:rgba(255,255,255,.94);
+  margin-top:10px;font-size:16px;max-width:34ch;
+  text-shadow:0 1px 3px rgba(0,0,0,.35);
 }
 .game-cover-img{max-height:190px;flex:none;filter:drop-shadow(0 10px 22px rgba(0,0,0,.35))}
 
@@ -307,12 +310,19 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
 }
 @media (max-width:560px){
   .mark{display:none}
-  .nav-in{justify-content:center}
+  .nav-in{justify-content:center;position:relative}
+  .nav{
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%);
+    mask-image:linear-gradient(to right,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%);
+  }
   .nav-links{
-    width:100%;justify-content:space-between;gap:10px;
+    width:100%;justify-content:flex-start;gap:16px;
     overflow-x:auto;-webkit-overflow-scrolling:touch;
+    padding:0 18px;
   }
   .nav-links a{font-size:10px;letter-spacing:.03em;white-space:nowrap}
+  .lbl-full{display:none}
+  .lbl-curta{display:inline}
   .hero-top{flex-direction:column;align-items:flex-start;gap:20px}
   h1{font-size:7.6vw;line-height:1.05}
   .btn{padding:13px 18px;font-size:11.5px}
@@ -331,8 +341,9 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
     <a class="mark" href="#topo">LÚCIA SCHNOMBERGER<span>▌</span></a>
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#projetos">Projetos de Tecnologia</a></li>
-      <li><a href="#traducao">Tradução e Legendagem</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#projetos"><span class="lbl-full">Projetos de Tecnologia</span><span class="lbl-curta">Tecnologia</span></a></li>
+      <li><a href="#traducao"><span class="lbl-full">Tradução e Legendagem</span><span class="lbl-curta">Tradução</span></a></li>
       <li><a href="#formacao">Formação</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
@@ -383,9 +394,14 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
         <dt>Aberta a</dt><dd>Projetos, parcerias e vagas na área de tecnologia</dd>
       </dl>
     </div>
+  </div>
+</section>
 
-    <h3 class="subhead">Serviços oferecidos</h3>
-    <ul class="svc on-light">
+<section class="band night on-night" id="servicos">
+  <div class="wrap reveal">
+    <p class="eyebrow">Serviços</p>
+    <p class="lede" style="color:#fff;max-width:44ch">O que eu ofereço, hoje.</p>
+    <ul class="svc">
       <li><b>Legendagem</b><span>Conteúdo audiovisual em geral, para diferentes plataformas</span></li>
       <li><b>Tradução e versão</b><span>Do inglês para o português e do português para o inglês</span></li>
       <li><b>Revisão e controle de qualidade</b><span>Legendagem, dublagem e outros trabalhos de tradução, incluindo pós-edição de tradução automática (MTPE)</span></li>
@@ -442,13 +458,6 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
         </div>
         <a class="textlink" href="https://meuorganizadorpessoal.vercel.app" target="_blank" rel="noopener">Abrir o aplicativo ↗</a>
       </article>
-
-      <!-- Quando terminar um projeto novo, copie este bloco e preencha -->
-      <article class="card">
-        <h3>Em construção</h3>
-        <p>Estou estudando banco de dados, Python e Power BI, e desenvolvendo coisas novas. O próximo projeto entra aqui assim que estiver pronto, terminado e no ar.</p>
-        <a class="textlink" href="#contato">Falar comigo</a>
-      </article>
     </div>
 
     <article class="feature game-feature">
@@ -484,6 +493,13 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
       </div>
 
       <a class="textlink" href="https://github.com/luciaschnomberger/super-anck" target="_blank" rel="noopener">Ver código no GitHub ↗</a>
+    </article>
+
+    <!-- Quando terminar um projeto novo, copie este bloco e preencha -->
+    <article class="card card-construcao">
+      <h3>Em construção</h3>
+      <p>Estou estudando banco de dados, Python e Power BI, e desenvolvendo coisas novas. O próximo projeto entra aqui assim que estiver pronto, terminado e no ar.</p>
+      <a class="textlink" href="#contato">Falar comigo</a>
     </article>
   </div>
 </section>
