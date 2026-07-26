@@ -181,7 +181,7 @@ h1{
 
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .card{background:#fff;border:1px solid var(--line);padding:28px 30px}
-.card-construcao{margin-top:22px;text-align:center}
+.card-construcao{margin-top:22px;text-align:center;max-width:60ch;margin-left:auto;margin-right:auto}
 .card .feature-head{margin-bottom:10px}
 .shot-wide{border-radius:10px;margin-bottom:20px;aspect-ratio:16/9;background:var(--night)}
 .shot-wide img{width:100%;height:100%;object-fit:cover;object-position:top left}
@@ -214,14 +214,17 @@ h1{
   padding:32px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;
   min-height:170px;
 }
+.game-cover-text{
+  position:relative;z-index:2;background:rgba(15,16,32,.55);
+  padding:18px 22px;border-radius:12px;
+}
 .game-cover-text h3{
   font-family:var(--display);font-weight:800;letter-spacing:-.02em;
   font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;line-height:1;
 }
 .game-cover-sub{
-  font-family:var(--body);color:rgba(255,255,255,.94);
+  font-family:var(--body);color:#fff;
   margin-top:10px;font-size:16px;max-width:34ch;
-  text-shadow:0 1px 3px rgba(0,0,0,.35);
 }
 .game-cover-img{max-height:190px;flex:none;filter:drop-shadow(0 10px 22px rgba(0,0,0,.35))}
 
@@ -402,6 +405,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
     <p class="eyebrow">Serviços</p>
     <p class="lede" style="color:#fff;max-width:44ch">O que eu ofereço, hoje.</p>
     <ul class="svc">
+      <li><b>Desenvolvimento de sites e aplicativos</b><span>Do banco de dados até a publicação</span></li>
       <li><b>Legendagem</b><span>Conteúdo audiovisual em geral, para diferentes plataformas</span></li>
       <li><b>Tradução e versão</b><span>Do inglês para o português e do português para o inglês</span></li>
       <li><b>Revisão e controle de qualidade</b><span>Legendagem, dublagem e outros trabalhos de tradução, incluindo pós-edição de tradução automática (MTPE)</span></li>
