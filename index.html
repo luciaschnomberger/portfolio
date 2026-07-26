@@ -195,8 +195,46 @@ h1{
 .svc li{padding:19px 0;border-bottom:1px solid var(--line-night)}
 .svc b{display:block;font-family:var(--display);font-weight:600;font-size:1.08rem;color:#fff;margin-bottom:3px}
 .svc span{font-size:16px;color:var(--muted-dark)}
+.svc.on-light{border-top-color:var(--line)}
+.svc.on-light li{border-bottom-color:var(--line)}
+.svc.on-light b{color:var(--ink)}
+.svc.on-light span{color:var(--muted)}
+.subhead{
+  font-family:var(--display);font-weight:600;font-size:1.15rem;
+  margin:34px 0 16px;padding-top:26px;border-top:2px solid var(--ink);
+}
 
-/* ---------- créditos ---------- */
+/* ---------- jogo: capa e vídeos ---------- */
+.game-feature{border-left-color:var(--caption)}
+.game-cover{
+  position:relative;overflow:hidden;border-radius:16px;
+  background:linear-gradient(135deg,var(--violet),var(--night));
+  padding:32px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  min-height:170px;
+}
+.game-cover-text h3{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;line-height:1;
+}
+.game-cover-sub{
+  font-family:var(--body);font-style:italic;color:rgba(255,255,255,.75);
+  margin-top:10px;font-size:15.5px;max-width:34ch;
+}
+.game-cover-img{max-height:190px;flex:none;filter:drop-shadow(0 10px 22px rgba(0,0,0,.35))}
+
+.game-videos{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:24px 0 26px}
+.video-label{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--violet);margin-bottom:10px;
+}
+.video-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;background:var(--night)}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+@media (max-width:700px){
+  .game-cover{flex-direction:column;text-align:center;padding:26px 22px}
+  .game-cover-img{max-height:150px}
+  .game-videos{grid-template-columns:1fr}
+}
 .lede-cred{margin-bottom:34px;max-width:34ch}
 .credits-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
 .cred-label{
@@ -293,9 +331,8 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
     <a class="mark" href="#topo">LÚCIA SCHNOMBERGER<span>▌</span></a>
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#projetos">Tecnologia</a></li>
-      <li><a href="#traducao">Tradução</a></li>
-      <li><a href="#trabalhos">Trabalhos</a></li>
+      <li><a href="#projetos">Projetos de Tecnologia</a></li>
+      <li><a href="#traducao">Tradução e Legendagem</a></li>
       <li><a href="#formacao">Formação</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
@@ -343,10 +380,17 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
       <dl class="facts">
         <dt>Onde</dt><dd>Porto Alegre, RS. Atendo remoto.</dd>
         <dt>Idiomas</dt><dd>Português (nativo) e inglês (avançado)</dd>
-        <dt>Faço</dt><dd>Aplicativos, sites, tradução, versão e legendagem</dd>
         <dt>Aberta a</dt><dd>Projetos, parcerias e vagas na área de tecnologia</dd>
       </dl>
     </div>
+
+    <h3 class="subhead">Serviços oferecidos</h3>
+    <ul class="svc on-light">
+      <li><b>Legendagem</b><span>Conteúdo audiovisual em geral, para diferentes plataformas</span></li>
+      <li><b>Tradução e versão</b><span>Do inglês para o português e do português para o inglês</span></li>
+      <li><b>Revisão e controle de qualidade</b><span>Legendagem, dublagem e outros trabalhos de tradução, incluindo pós-edição de tradução automática (MTPE)</span></li>
+      <li><b>Localização de software</b><span>Adaptação de aplicativos e sites para outro idioma</span></li>
+    </ul>
   </div>
 </section>
 
@@ -406,32 +450,48 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--caption);outline-offs
         <a class="textlink" href="#contato">Falar comigo</a>
       </article>
     </div>
-  </div>
-</section>
 
-<section class="band night on-night" id="traducao">
-  <div class="wrap reveal">
-    <p class="eyebrow">Tradução e legendagem</p>
-    <div class="trans-grid">
-      <div>
-        <p class="lede">Legendar é encaixar sentido dentro de um limite. Programar também.</p>
-        <p>Trabalho com tradução e versão entre o português e o inglês, legendagem para plataformas de streaming e revisão de qualidade de legendagem e dublagem. É um ofício de precisão: o tempo de leitura, o número de caracteres e o tom de quem fala precisam caber todos na mesma linha.</p>
-        <p>Com a parte técnica que aprendi depois, faço também um trabalho que junta as duas áreas: adaptar um aplicativo ou site inteiro para outro idioma, cuidando do texto e do código ao mesmo tempo.</p>
+    <article class="feature game-feature">
+      <div class="game-cover">
+        <div class="game-cover-text">
+          <p class="kicker" style="color:var(--caption);margin-bottom:8px">Jogo · Python + Pygame</p>
+          <h3>SUPER ANCK</h3>
+          <p class="game-cover-sub">um plataformer estrelado pela minha gata Ancksunamum</p>
+        </div>
+        <img src="anck_gato.png" alt="Ancksunamum, a gata que inspirou o jogo, vestida de Pikachu" class="game-cover-img opcional">
       </div>
 
-      <ul class="svc">
-        <li><b>Legendagem</b><span>Séries e filmes para plataformas de streaming</span></li>
-        <li><b>Tradução e versão</b><span>Do inglês para o português e do português para o inglês</span></li>
-        <li><b>Revisão e controle de qualidade</b><span>Legendagem e dublagem, antes da publicação</span></li>
-        <li><b>Localização de software</b><span>Adaptação de aplicativos e sites para outro idioma</span></li>
-      </ul>
-    </div>
+      <p style="margin-top:24px">Jogo de plataforma 2D feito do zero em Python, com física de pulo, pulo duplo, inimigos com comportamentos diferentes, item de estrela com invencibilidade temporária e chefão final. Empacotado em <code>.exe</code> para jogar sem instalar nada.</p>
+
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pygame</span>
+      </div>
+
+      <div class="game-videos">
+        <div>
+          <p class="video-label">Vitória</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/5cEGF1pa_H0" title="Super Anck - Vitória" frameborder="0" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div>
+          <p class="video-label">Game Over</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/ZZFTyPAZKFM" title="Super Anck - Game Over" frameborder="0" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <a class="textlink" href="https://github.com/luciaschnomberger/super-anck" target="_blank" rel="noopener">Ver código no GitHub ↗</a>
+    </article>
   </div>
 </section>
 
-<section class="band projects" id="trabalhos">
+
+<section class="band projects" id="traducao">
   <div class="wrap reveal">
-    <p class="eyebrow">Trabalhos</p>
+    <p class="eyebrow">Tradução e Legendagem</p>
     <p class="lede lede-cred">Alguns dos títulos em que trabalhei.</p>
     <div class="credits-cols">
       <div>
